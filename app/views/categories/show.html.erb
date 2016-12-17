@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Category:</strong>
+  <%= @category.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @category.desc %>
+</p>
+<h3> Products under this category </h3>
+<% Product.where(category_id: @category.id).in_groups_of(3,  false).each do |group| %>
+<div class='row'>
+  <% group.each do |product| %>
+  <div class='col-sm-4'>
+    <%= image_tag(product.photo.url(:thumb), class: "img-responsive") %>
+    <h3><%= link_to product.title, product %></h3>
+    <div><%= number_to_currency(product.price, :unit => 'INR') %></div>
+    <a href="/cart/<%= product.id %>">Add To Cart</a>
+  </div>
+  <% end %>
+</div>
+<% end %>
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %> |
+<%= link_to 'Add products', new_product_path %> |
+<%= link_to 'Remove products', edit_product_path(@category) %> |
+

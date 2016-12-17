@@ -1,0 +1,21 @@
+<h1>Your Cart</h1>
+<% if @cart.empty? %>
+<p>Your cart is currently Empty</p>
+<% else %>
+<%= link_to 'Empty Your Cart', cart_clear_path %>
+<% end %>
+<br><br><br>
+<% total=0 %>
+<div class="row">
+  <div class="col-xs-12">
+    <% @cart.each do | id, quantity | %>
+    <% product=Product.find_by_id(id) %>
+    <p><%= link_to product.title, product %></p>
+    <p><%= image_tag(product.photo.url(:medium), class: "img-responsive") %></p>
+    <p>PRICE: <%= number_to_currency(product.price, :unit => 'INR ') %></p>
+    <p>Quantity: <%= quantity %></p>
+    <% total+= quantity * product.price %>
+    <% end %>
+    <p><b>TOTAL: <%= number_to_currency(total, :unit => 'INR ') %></b></p>
+  </div>
+</div>

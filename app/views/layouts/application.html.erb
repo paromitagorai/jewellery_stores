@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jewel</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render "layouts/navbar" %>
+    <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <footer class="footer">
+          <small>
+          Copyright &copy; Online Jewellery Stores 2016
+          </small>
+          <nav>
+            <ul>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Shop", products_path %></li>
+              <li><%= link_to "About", page_about_path %></li>
+              <li><%= link_to "Collections", products_path %></li>
+            </ul>
+          </nav>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
+
